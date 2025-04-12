@@ -57,3 +57,10 @@ docker ps
 | Argument   | Description                                      |
 | ---------- | ------------------------------------------------ |
 | -a, --all  | Show all containers (default shows just running) |
+
+## Clean up Docker
+The following command leaves the cleanup of all stopped containers (and other resources) to Docker:
+
+```bash
+docker system prune
+```
