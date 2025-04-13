@@ -1,0 +1,13 @@
+# Datei: 13-haproxy/compose.yaml
+services:
+  haproxy:
+    image: htaccess24/haproxy
+    build: .
+    ports:
+      - 8080:80
+
+  nginx:
+    image: htaccess24/nginx-debian
+
+  apache:
+    image: htaccess24/apache-debian
