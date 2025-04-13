@@ -1,0 +1,17 @@
+# Datei: 12-node-express/compose.yaml
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - ./src:/src
+      - node_exp_modules:/src/node_modules
+    ports:
+      - 8080:3000
+    environment:
+      DEBUG: "src"
+    command: ["node", "bin/www"]
+
+volumes:
+  node_exp_modules:
