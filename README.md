@@ -19,11 +19,12 @@ docker build -t learn-docker/example-image .
 docker run -d --name learn-docker/example -p 8080:80 learn-docker/example-image
 ```
 
-| Argument      | Description                                        |
-| ------------- | -------------------------------------------------- |
-| -d, --detach  | Run container in background and print container id |
-| --name        | Assign a name to the container                     |
-| -p, --publish | Publish a container's port(s) to the host          |
+| Argument       | Description                                        |
+| -------------- | -------------------------------------------------- |
+| -d, --detach   | Run container in background and print container id |
+| --name         | Assign a name to the container                     |
+| -p, --publish  | Publish a container's port(s) to the host          |
+| -h, --hostname | Container host name                                |
 
 ## Stop a running container
 To stop a running container, run the following command in your terminal:
