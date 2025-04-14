@@ -1,0 +1,17 @@
+# Datei: 16-phpmyadmin/compose.yaml
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - ./db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: 16-phpmyadmin-db-1
+    ports:
+      - 8080:80

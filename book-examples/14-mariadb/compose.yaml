@@ -1,0 +1,9 @@
+# Datei: 14-mariadb/compose.yaml
+services:
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: geheim
+    volumes:
+      - ./db:/var/lib/mysql
