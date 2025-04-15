@@ -1,0 +1,8 @@
+# Datei: 20-redis/compose.yaml
+services:
+  rd-master:
+    image: redis:7
+
+  rd-slave:
+    image: redis:7
+    command: redis-server --slaveof rd-master 6379

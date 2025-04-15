@@ -1,0 +1,22 @@
+# Datei: 19-mongodb-auth/compose.yaml
+services:
+  db:
+    image: mongo:5
+    volumes:
+      - mongo:/data/db
+      - ./init:/docker-entrypoint-initdb.d
+    environment:
+      MONGO_INITDB_DATABASE: geonames
+      MONGO_INITDB_ROOT_USERNAME: dockerbuch
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_root
+    ports:
+      - 27018:27017
+    secrets:
+      - mongo_root
+
+volumes:
+  mongo:
+
+secrets:
+  mongo_root:
+    file: ./mongo_root.txt
