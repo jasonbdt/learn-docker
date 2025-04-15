@@ -1,0 +1,21 @@
+# Datei: prog-examples/04-php-fpm/compose.yaml
+services:
+  php:
+    build: .
+    image: htaccess24/php-fpm:alpine-exif
+    volumes:
+      - www:/var/www/html
+      - vendor:/var/www/html/vendor
+
+  nginx:
+    image: nginx:1
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - www:/var/www/html
+      - vendor:/var/www/html/vendor
+    ports:
+      - 8080:80
+
+volumes:
+  vendor:
+  www:

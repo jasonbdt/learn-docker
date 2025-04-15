@@ -1,0 +1,9 @@
+# Datei: prog-examples/04-php-fpm/compose.override.yaml
+services:
+  php:
+    volumes:
+      - ./www:/var/www/html
+
+  nginx:
+    volumes:
+      - ./www:/var/www/html
