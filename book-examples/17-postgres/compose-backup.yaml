@@ -1,0 +1,15 @@
+# Datei: 17-postgres/compose-backup.yaml
+services:
+  backup:
+    image: postgres:15-alpine
+    depends_on:
+      - db
+    volumes:
+      - backup_vol:/backup
+    command: >
+      pg_dump --host db -F c -f /backup/geonames.dumb --username=postgres geonames
+    environment:
+      PGPASSWORD: geheim
+
+volumes:
+  backup_vol:
