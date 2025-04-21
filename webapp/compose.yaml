@@ -1,0 +1,50 @@
+# Datei: webapp/compose.yaml
+services:
+  mongo1:
+    image: mongo:5
+    command: --replSet "rs0"
+    ports:
+      - 27017
+    volumes:
+      - mongovol1:/data/db
+  
+  mongo2:
+    image: mongo:5
+    command: --replSet "rs0"
+    volumes:
+      - mongovol2:/data/db
+
+  mongo3:
+    image: mongo:5
+    command: --replSet "rs0"
+    volumes:
+      - mongovol3:/data/db
+
+  frontend:
+    image: htaccess24/webapp-frontend
+    build: frontend
+    ports:
+      - 80:5173
+    depends_on:
+      - api
+    restart: always
+
+  api:
+    image: htaccess24/webapp-backend
+    build: api
+    environment:
+      - MONGO_URL=mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+      - HEALTH_URL=http://localhost:3000/health
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo1
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+
+volumes:
+  mongovol1:
+  mongovol2:
+  mongovol3:

@@ -1,0 +1,21 @@
+# Datei: webapp/compose.override.yaml
+services:
+  api:
+    build:
+      context: api
+      target: dev
+    image: htaccess24/webapp-api-dev:latest
+    environment:
+      - DEBUG=api
+    volumes:
+      - ./api:/src
+
+  frontend:
+    build:
+      context: frontend
+      target: builder
+    image: htaccess24/webapp-frontend-build:latest
+    environment:
+      - API_BASE=http://localhost:3000
+    volumes:
+      - ./frontend/vue-project:/src/vue
